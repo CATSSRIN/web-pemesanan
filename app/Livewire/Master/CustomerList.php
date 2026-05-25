@@ -44,6 +44,18 @@ class CustomerList extends Component
         $this->openModal();
     }
 
+    public function updatedNamaPelanggan($value)
+    {
+        if ($this->customerId || !empty($this->kode_pelanggan) || empty($value)) {
+            return;
+        }
+
+        $prefix = strtoupper(substr(preg_replace('/[^A-Za-z]/', '', $value), 0, 4));
+        $prefix = $prefix ?: 'CUST';
+        $nextId = (Customer::max('id') ?? 0) + 1;
+        $this->kode_pelanggan = $prefix . '-' . str_pad((string) $nextId, 3, '0', STR_PAD_LEFT);
+    }
+
     public function edit($id)
     {
         $customer = Customer::findOrFail($id);

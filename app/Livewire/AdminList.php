@@ -81,6 +81,24 @@ class AdminList extends Component
         $this->closeModal();
     }
 
+    public function destroy($id)
+    {
+        $admin = User::findOrFail($id);
+
+        if ((int) $admin->id === (int) auth()->id()) {
+            session()->flash('message', 'Akun yang sedang digunakan tidak bisa dihapus.');
+            return;
+        }
+
+        if (User::role('admin')->count() <= 1) {
+            session()->flash('message', 'Minimal harus ada 1 admin aktif di sistem.');
+            return;
+        }
+
+        $admin->delete();
+        session()->flash('message', 'Admin berhasil dihapus.');
+    }
+
     public function render()
     {
         $admins = User::role('admin')
