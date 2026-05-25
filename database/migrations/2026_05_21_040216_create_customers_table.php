@@ -18,8 +18,9 @@ return new class extends Migration
             $table->string('nama_toko')->nullable();
             $table->text('alamat');
             $table->string('kota');
-            $table->string('no_hp');
+            $table->string('no_hp')->nullable();
             $table->string('email')->nullable();
+            $table->enum('kategori_harga', ['high', 'middle', 'low'])->nullable();
             $table->boolean('is_active')->default(true);
             $table->text('catatan')->nullable();
             $table->timestamps();

@@ -17,8 +17,11 @@ return new class extends Migration
             $table->string('nama_produk');
             $table->string('kategori')->nullable();
             $table->string('satuan')->default('pcs');
-            $table->decimal('harga_default', 15, 2);
-            $table->integer('stok_awal')->nullable();
+            $table->integer('harga_default')->default(0);
+            $table->integer('harga_high')->default(0);
+            $table->integer('harga_middle')->default(0);
+            $table->integer('harga_low')->default(0);
+            $table->integer('stok_awal')->default(0);
             $table->text('deskripsi')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();

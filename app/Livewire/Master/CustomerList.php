@@ -14,7 +14,7 @@ class CustomerList extends Component
     public $isOpen = false;
     public $isPriceModalOpen = false;
     public $customerId;
-    public $kode_pelanggan, $nama_pelanggan, $nama_toko, $alamat, $kota, $no_hp, $email, $catatan;
+    public $kode_pelanggan, $nama_pelanggan, $nama_toko, $alamat, $kota, $no_hp, $email, $kategori_harga, $catatan;
     public $is_active = true;
 
     public $pricingCustomerId;
@@ -35,12 +35,12 @@ class CustomerList extends Component
     public function closeModal()
     {
         $this->isOpen = false;
-        $this->reset(['customerId', 'kode_pelanggan', 'nama_pelanggan', 'nama_toko', 'alamat', 'kota', 'no_hp', 'email', 'catatan', 'is_active']);
+        $this->reset(['customerId', 'kode_pelanggan', 'nama_pelanggan', 'nama_toko', 'alamat', 'kota', 'no_hp', 'email', 'kategori_harga', 'catatan', 'is_active']);
     }
 
     public function create()
     {
-        $this->reset(['customerId', 'kode_pelanggan', 'nama_pelanggan', 'nama_toko', 'alamat', 'kota', 'no_hp', 'email', 'catatan', 'is_active']);
+        $this->reset(['customerId', 'kode_pelanggan', 'nama_pelanggan', 'nama_toko', 'alamat', 'kota', 'no_hp', 'email', 'kategori_harga', 'catatan', 'is_active']);
         $this->openModal();
     }
 
@@ -55,6 +55,7 @@ class CustomerList extends Component
         $this->kota = $customer->kota;
         $this->no_hp = $customer->no_hp;
         $this->email = $customer->email;
+        $this->kategori_harga = $customer->kategori_harga;
         $this->is_active = $customer->is_active;
         $this->catatan = $customer->catatan;
         $this->openModal();
@@ -78,6 +79,7 @@ class CustomerList extends Component
             'kota' => $this->kota,
             'no_hp' => $this->no_hp,
             'email' => $this->email,
+            'kategori_harga' => $this->kategori_harga ?: null,
             'is_active' => $this->is_active,
             'catatan' => $this->catatan,
         ]);

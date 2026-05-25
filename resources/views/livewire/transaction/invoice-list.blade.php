@@ -44,10 +44,11 @@
                                 <span class="bg-emerald-100 text-emerald-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-emerald-900 dark:text-emerald-300">Paid</span>
                             @endif
                         </td>
-                        <td class="px-6 py-4 text-right">
+                        <td class="px-6 py-4 text-right space-x-2">
                             @if($inv->status_invoice === 'unpaid')
-                                <button wire:click="markAsPaid({{ $inv->id }})" wire:confirm="Tandai Invoice ini sudah LUNAS?" class="font-medium text-emerald-600 dark:text-emerald-500 hover:underline">Tandai Lunas</button>
+                                <button wire:click="markAsPaid({{ $inv->id }})" wire:confirm="Tandai Invoice ini sudah LUNAS?" class="font-medium text-emerald-600 dark:text-emerald-500 hover:underline mr-2">Tandai Lunas</button>
                             @endif
+                            <a href="{{ route('print.invoice', $inv->id) }}" target="_blank" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">PDF Invoice</a>
                         </td>
                     </tr>
                     @endforeach

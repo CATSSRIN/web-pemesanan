@@ -48,13 +48,12 @@
                         </td>
                         <td class="px-6 py-4 text-right space-x-2">
                             @if($do->status_do === 'draft')
-                                <a href="{{ route('do.edit', $do->id) }}" class="font-medium text-indigo-600 dark:text-indigo-500 hover:underline">Edit</a>
-                                <button wire:click="finalizeDo({{ $do->id }})" wire:confirm="Yakin ingin finalisasi DO ini? Tidak dapat diedit lagi." class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Finalize</button>
+                                <a href="{{ route('do.edit', $do->id) }}" class="font-medium text-indigo-600 dark:text-indigo-500 hover:underline mr-2">Edit</a>
+                                <button wire:click="finalizeDo({{ $do->id }})" wire:confirm="Finalize DO ini? Setelah finalize tidak bisa diedit dan akan bisa dibuat Invoicenya." class="font-medium text-emerald-600 dark:text-emerald-500 hover:underline mr-2">Finalize</button>
+                            @elseif($do->status_do === 'finalized' && !$do->invoice)
+                                <button wire:click="createInvoice({{ $do->id }})" wire:confirm="Buat Invoice dari DO ini?" class="font-medium text-amber-600 dark:text-amber-500 hover:underline mr-2">Buat Invoice</button>
                             @endif
-                            
-                            @if($do->status_do === 'finalized')
-                                <button wire:click="createInvoice({{ $do->id }})" wire:confirm="Buat Invoice dari DO ini?" class="font-medium text-emerald-600 dark:text-emerald-500 hover:underline">Buat Invoice</button>
-                            @endif
+                            <a href="{{ route('print.do', $do->id) }}" target="_blank" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">PDF DO</a>
                         </td>
                     </tr>
                     @endforeach

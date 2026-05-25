@@ -13,7 +13,7 @@ class ProductList extends Component
     public $search = '';
     public $isOpen = false;
     public $productId;
-    public $kode_produk, $nama_produk, $kategori, $satuan, $harga_default, $stok_awal, $deskripsi;
+    public $kode_produk, $nama_produk, $kategori, $satuan, $harga_default, $harga_high, $harga_middle, $harga_low, $stok_awal, $deskripsi;
     public $is_active = true;
 
     public function updatingSearch()
@@ -30,12 +30,12 @@ class ProductList extends Component
     public function closeModal()
     {
         $this->isOpen = false;
-        $this->reset(['productId', 'kode_produk', 'nama_produk', 'kategori', 'satuan', 'harga_default', 'stok_awal', 'deskripsi', 'is_active']);
+        $this->reset(['productId', 'kode_produk', 'nama_produk', 'kategori', 'satuan', 'harga_default', 'harga_high', 'harga_middle', 'harga_low', 'stok_awal', 'deskripsi', 'is_active']);
     }
 
     public function create()
     {
-        $this->reset(['productId', 'kode_produk', 'nama_produk', 'kategori', 'satuan', 'harga_default', 'stok_awal', 'deskripsi', 'is_active']);
+        $this->reset(['productId', 'kode_produk', 'nama_produk', 'kategori', 'satuan', 'harga_default', 'harga_high', 'harga_middle', 'harga_low', 'stok_awal', 'deskripsi', 'is_active']);
         $this->satuan = 'pcs';
         $this->openModal();
     }
@@ -49,6 +49,9 @@ class ProductList extends Component
         $this->kategori = $product->kategori;
         $this->satuan = $product->satuan;
         $this->harga_default = $product->harga_default;
+        $this->harga_high = $product->harga_high;
+        $this->harga_middle = $product->harga_middle;
+        $this->harga_low = $product->harga_low;
         $this->stok_awal = $product->stok_awal;
         $this->deskripsi = $product->deskripsi;
         $this->is_active = $product->is_active;
@@ -69,7 +72,10 @@ class ProductList extends Component
             'kategori' => $this->kategori,
             'satuan' => $this->satuan ?? 'pcs',
             'harga_default' => $this->harga_default,
-            'stok_awal' => $this->stok_awal,
+            'harga_high' => $this->harga_high ?? 0,
+            'harga_middle' => $this->harga_middle ?? 0,
+            'harga_low' => $this->harga_low ?? 0,
+            'stok_awal' => $this->stok_awal ?? 0,
             'deskripsi' => $this->deskripsi,
             'is_active' => $this->is_active,
         ]);

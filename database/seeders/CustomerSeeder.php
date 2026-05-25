@@ -12,15 +12,18 @@ class CustomerSeeder extends Seeder
     {
         $faker = Faker::create('id_ID');
 
+        $categories = ['high', 'middle', 'low'];
+
         for ($i = 1; $i <= 10; $i++) {
             Customer::create([
-                'kode_pelanggan' => 'CUST-00' . $i,
-                'nama_pelanggan' => $faker->name,
-                'nama_toko' => 'Toko ' . $faker->company,
-                'alamat' => $faker->address,
-                'kota' => $faker->city,
-                'no_hp' => $faker->phoneNumber,
-                'email' => $faker->email,
+                'kode_pelanggan' => 'CUST-' . str_pad($i, 3, '0', STR_PAD_LEFT),
+                'nama_pelanggan' => 'Pelanggan ' . $i,
+                'nama_toko' => 'Toko ' . $i,
+                'alamat' => 'Jalan Pelanggan No ' . $i,
+                'kota' => 'Kota ' . $i,
+                'no_hp' => '0812' . rand(10000000, 99999999),
+                'email' => 'customer' . $i . '@email.com',
+                'kategori_harga' => $categories[array_rand($categories)],
                 'is_active' => true,
             ]);
         }
