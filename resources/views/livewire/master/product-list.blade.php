@@ -46,6 +46,7 @@
                         </td>
                         <td class="px-6 py-4">
                             <button wire:click="edit({{ $p->id }})" class="font-medium text-indigo-600 dark:text-indigo-500 hover:underline mr-3">Edit</button>
+                            <button wire:click="destroy({{ $p->id }})" wire:confirm="Yakin ingin menghapus produk ini?" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</button>
                         </td>
                     </tr>
                     @endforeach
